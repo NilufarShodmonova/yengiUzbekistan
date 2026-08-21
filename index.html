@@ -487,6 +487,16 @@ body.tp-mode-inner .tp-bg__veil{
 }
 body.tp-mode-inner .tp-bg__img{opacity:.34;filter:blur(1.4px) saturate(.8) brightness(.7)}
 
+/* ================= ТИТУЛЬНЫЙ ЭКРАН: ЧИСТЫЙ КАДР =================
+   Только сплеш (body без .tp-mode-inner): затемняющая вуаль снимается,
+   кадр не гасится по яркости, и поднимается на 20% высоты экрана.
+   height:120% при top:-20% — чтобы низ кадра не оголил фон. */
+body:not(.tp-mode-inner) .tp-bg__veil{background:none}
+body:not(.tp-mode-inner) .tp-bg__img{
+  top:-20%;height:120%;
+  filter:saturate(.86) contrast(1.05);
+}
+
 /* Заголовок обложки — две строки, перенос вручную через <br>,
    поэтому запрет переноса из блока «ОБЛОЖКА» снимается.
    Кегль подобран так, чтобы строка «YANGI O‘ZBEKISTON» не переносилась
