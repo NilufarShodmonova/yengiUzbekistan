@@ -384,10 +384,15 @@ body.light #dots i.on{background:var(--gl)!important}
 #pg-main:active{transform:translateX(-50%) scale(.96)}
 /* стрелки слайдера: только иконки, круглые, в правом нижнем углу */
 #pg-nav{
-  position:fixed;right:2.2vw;bottom:2vh;z-index:60;
-  display:flex;align-items:center;gap:clamp(8px,.8vw,16px);
+  /* стрелки разведены по краям нижней кромки: «назад» слева, «вперёд» справа.
+     Контейнер тянется во всю ширину, поэтому он прозрачен для указателя,
+     иначе перекрыл бы центральную кнопку и низ слайда. */
+  position:fixed;left:0;right:0;bottom:2vh;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.2vw;pointer-events:none;
 }
 #pg-nav button{
+  pointer-events:auto;
   width:var(--mh);height:var(--mh);border-radius:50%;
   display:flex;align-items:center;justify-content:center;
   border:1.5px solid var(--line);background:rgba(9,17,29,.62);
@@ -398,7 +403,7 @@ body.light #dots i.on{background:var(--gl)!important}
 #pg-nav button:active{transform:scale(.93)}
 #pg-nav svg{width:42%;height:42%;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 @media (max-aspect-ratio:1/1){
-  #pg-nav{right:5vw}
+  #pg-nav{padding:0 5vw}
 }
 #pg-main svg{width:1.4em;height:1.4em;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 @media (max-aspect-ratio:1/1){
