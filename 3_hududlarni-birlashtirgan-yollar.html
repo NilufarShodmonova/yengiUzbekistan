@@ -459,6 +459,29 @@ html,body{touch-action:pan-x pan-y}
 @media (min-width:1900px) and (min-height:1900px) and (max-aspect-ratio:1/1){
   .arch{width:min(266px,20vw)}
 }
+
+/* ============ ШАПКА РАЗДЕЛА: МЕТРИКИ КАК В index.html ============
+   На главной 1rem = calc(.55vw + .55vh): логотип 5.4rem, отступы 2rem
+   (2.4rem в портрете), зазор 2.2rem, имя раздела 1.72rem / .2em.
+   Тот же модуль вынесен в --tpu, поэтому шапка раздела совпадает
+   с шапкой меню по высоте, кеглю и начертанию на любом экране.
+   Блок стоит в конце файла: иначе --hh и .nm перебьют ступени 1300/1900. */
+:root{--tpu:calc(0.55vw + 0.55vh)}
+@media (min-width:2500px){:root{--tpu:clamp(24px,calc(0.65vw + 0.65vh),42px)}}
+
+:root{--hh:calc(9.4 * var(--tpu) + 1px)}
+#pg-head{gap:calc(2.2 * var(--tpu));padding:0 calc(3.4 * var(--tpu))}
+#pg-head img{width:calc(5.4 * var(--tpu))}
+#pg-head .nm{
+  font-family:var(--serif);font-weight:600;
+  font-size:calc(1.72 * var(--tpu));
+  letter-spacing:.2em;line-height:1.22;
+  color:var(--gp);text-transform:uppercase;
+}
+@media (max-aspect-ratio:1/1){
+  :root{--hh:calc(10.2 * var(--tpu) + 1px)}
+  #pg-head{padding:0 calc(3 * var(--tpu))}
+}
 </style>
 </head>
 <body>
