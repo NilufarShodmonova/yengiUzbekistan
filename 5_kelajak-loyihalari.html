@@ -467,7 +467,7 @@ html,body{touch-action:pan-x pan-y}
 <button id="pg-prev" type="button" aria-label="Oldingi"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
 <button id="pg-next" type="button" aria-label="Keyingi"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
 </div>
-<a id="pg-main" href="index.html"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span id="pg-main-t">BOSH SAHIFA</span></a>
+<a id="pg-main" href="index.html#tp-menu"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg><span id="pg-main-t">BOSH SAHIFA</span></a>
 
 <div id="bar"></div>
 <div id="deck">
@@ -726,7 +726,7 @@ go(0);
   function set(l){
     if(!NM[l]) l='uz';
     nm.textContent=NM[l]; mt.textContent=MT[l];
-    mb.setAttribute('href','index.html?lang='+l);
+    mb.setAttribute('href','index.html?lang='+l+'#tp-menu');
   }
   [].forEach.call(document.querySelectorAll('#lang button'),function(b){
     b.addEventListener('click',function(){ set(b.getAttribute('data-l')); });
