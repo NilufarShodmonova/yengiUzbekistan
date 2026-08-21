@@ -412,8 +412,8 @@ body.tp-mode-inner .tp-bg__veil{
     width:100%;max-width:none;align-items:stretch;
   }
   .tp-grid .tp-card{grid-column:span 1!important;width:auto;height:100%;min-height:0;max-height:23vh}
-  /* пятая карточка — во всю ширину */
-  .tp-grid .tp-card:nth-child(5){grid-column:1 / -1!important;min-height:0;max-height:17vh}
+  /* пятая карточка — обычная карточка нижнего ряда, не во всю ширину */
+  .tp-grid .tp-card:nth-child(5){min-height:0;max-height:23vh}
   .tp-card__title{font-size:1.9rem;line-height:1.24}
   .tp-arch{width:12rem}
   .tp-langs{gap:3rem}
@@ -549,21 +549,22 @@ body:not(.tp-mode-inner) .tp-bg__img{
 .tp-splash__mid .tp-hero__sup{font-size:min(2.6vw,28px)}
 .tp-splash__mid .tp-hero__sub{font-size:min(2.4vw,26px);letter-spacing:.28em;padding-left:.28em;margin-top:.4rem}
 
-/* ================= МЕНЮ: 2 КАРТОЧКИ СВЕРХУ, 3 СНИЗУ ================= */
+/* ================= МЕНЮ: 3 КАРТОЧКИ СВЕРХУ, 2 СНИЗУ ================= */
 .tp-grid{
   display:grid!important;
   grid-template-columns:repeat(6,1fr)!important;
   max-width:126rem;gap:2.2rem;
 }
-/* нижний ряд — три карточки по 2 колонки */
+/* верхний ряд — три карточки по 2 колонки, ряд занят целиком */
 .tp-grid .tp-card,
-.tp-grid .tp-card:nth-child(3),
-.tp-grid .tp-card:nth-child(4),
-.tp-grid .tp-card:nth-child(5){grid-column:span 2!important}
-/* верхний ряд — две карточки той же ширины, что и нижние,
-   по центру сетки: колонки 2-3 и 4-5 из шести */
-.tp-grid .tp-card:nth-child(1){grid-column:2 / span 2!important}
-.tp-grid .tp-card:nth-child(2){grid-column:4 / span 2!important}
+.tp-grid .tp-card:nth-child(1),
+.tp-grid .tp-card:nth-child(2),
+.tp-grid .tp-card:nth-child(3){grid-column:span 2!important}
+/* нижний ряд — две карточки той же ширины, что и верхние, по центру
+   сетки: колонки 2-3 и 4-5 из шести. Ширину не растягиваем — карточка
+   остаётся карточкой. */
+.tp-grid .tp-card:nth-child(4){grid-column:2 / span 2!important}
+.tp-grid .tp-card:nth-child(5){grid-column:4 / span 2!important}
 
 /* иконка прижата к верху: одна линия для всех карточек,
    независимо от длины заголовка */
