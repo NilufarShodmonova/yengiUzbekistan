@@ -488,10 +488,17 @@ body.tp-mode-inner .tp-bg__veil{
 body.tp-mode-inner .tp-bg__img{opacity:.34;filter:blur(1.4px) saturate(.8) brightness(.7)}
 
 /* ================= ТИТУЛЬНЫЙ ЭКРАН: ЧИСТЫЙ КАДР =================
-   Только сплеш (body без .tp-mode-inner): затемняющая вуаль снимается,
-   кадр не гасится по яркости, и поднимается на 20% высоты экрана.
+   Только сплеш (body без .tp-mode-inner): кадр не гасится по яркости
+   и поднимается на 20% высоты экрана; вуаль — исходная, мягкая:
+   тень по верхней и нижней кромке, чистое небо в середине.
    height:120% при top:-20% — чтобы низ кадра не оголил фон. */
-body:not(.tp-mode-inner) .tp-bg__veil{background:none}
+body:not(.tp-mode-inner) .tp-bg__veil{
+  background:linear-gradient(180deg,
+    rgba(7,13,24,.45) 0%,
+    rgba(7,13,24,.04) 34%,
+    rgba(7,13,24,.30) 66%,
+    rgba(7,13,24,.86) 100%);
+}
 body:not(.tp-mode-inner) .tp-bg__img{
   top:-20%;height:120%;
   filter:saturate(.86) contrast(1.05);
