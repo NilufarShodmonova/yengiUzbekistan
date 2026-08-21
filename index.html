@@ -766,6 +766,13 @@ en:{
     $$('.tp-screen').forEach(function(s){ s.classList.remove('is-active'); });
     $(id).classList.add('is-active');
     document.body.classList.toggle('tp-mode-inner', id !== '#tp-splash');
+    resetIdle();
+  }
+
+  /* титульный экран — сам по себе состояние покоя, блокировать нечего */
+  function isSplashActive(){
+    var s = document.getElementById('tp-splash');
+    return !!s && s.classList.contains('is-active');
   }
 
   function archSVG(iconKey){
@@ -892,7 +899,12 @@ en:{
   /* --- сброс по бездействию --- */
   function resetIdle(){
     clearTimeout(idleTimer);
-    idleTimer = setTimeout(function(){ tpLock(function(){ setLang(lang); showScreen('#tp-splash'); }); }, IDLE_MS);
+    idleTimer = null;
+    if (isSplashActive()) return;
+    idleTimer = setTimeout(function(){
+      if (isSplashActive()) return;
+      tpLock(function(){ setLang(lang); showScreen('#tp-splash'); });
+    }, IDLE_MS);
   }
   ['pointerdown','touchstart','mousemove','wheel','keydown'].forEach(function(ev){
     document.addEventListener(ev, resetIdle, {passive:true});
