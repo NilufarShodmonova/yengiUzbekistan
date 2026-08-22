@@ -1015,5 +1015,34 @@ en:{
   document.addEventListener('pointerdown',go,true);
 })();
 </script>
+<script>
+/* КЛИК: тот же минималистичный щелчок, что и в разделах — короткий сухой
+   транзиент в WebAudio, без аудиофайлов. Отключается через ?sound=off */
+(function(){
+  var AC=null, SND=true;
+  try{ SND = new URLSearchParams(location.search).get('sound')!=='off'; }catch(e){}
+  function ac(){
+    if(!SND) return null;
+    try{
+      if(!AC){ var C=window.AudioContext||window.webkitAudioContext; if(!C){SND=false;return null;} AC=new C(); }
+      if(AC.state==='suspended') AC.resume();
+      return AC;
+    }catch(e){ SND=false; return null; }
+  }
+  function tap(){
+    var c=ac(); if(!c) return; var t=c.currentTime;
+    var n=Math.ceil(c.sampleRate*0.03), b=c.createBuffer(1,n,c.sampleRate), d=b.getChannelData(0);
+    for(var k=0;k<n;k++) d[k]=(Math.random()*2-1)*Math.pow(1-k/n,16);
+    var s=c.createBufferSource(); s.buffer=b;
+    var hp=c.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=1500;
+    var g=c.createGain();
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.linearRampToValueAtTime(0.06,t+0.001);
+    g.gain.exponentialRampToValueAtTime(0.0004,t+0.03);
+    s.connect(hp); hp.connect(g); g.connect(c.destination); s.start(t); s.stop(t+0.05);
+  }
+  document.addEventListener('pointerdown', tap, true);
+})();
+</script>
 </body>
 </html>
