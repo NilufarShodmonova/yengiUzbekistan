@@ -531,6 +531,8 @@ body:not(.tp-mode-inner) .tp-bg__img{
 /* только коды языков: UZ / RU / EN — без подписи и линии */
 .tp-lang{justify-content:center;padding-bottom:0;gap:0}
 .tp-lang__code{margin-top:0;padding-top:0}
+/* кнопки языков — на 50px выше */
+.tp-splash__bot{padding-bottom:calc(4vh + 50px)}
 
 /* главный заголовок: вписан в 1020px, отступ сверху 40px */
 .tp-splash__mid{
@@ -587,6 +589,8 @@ body:not(.tp-mode-inner) .tp-bg__img{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
 }
 .tp-grid{flex:0 0 auto}
+/* карточки меню и кнопки языков внизу — на 150px выше */
+.tp-menu__footer{margin-bottom:150px}
 
 /* горизонтальная раскладка: два ряда карточек должны уместиться по высоте */
 @media (orientation:landscape){
