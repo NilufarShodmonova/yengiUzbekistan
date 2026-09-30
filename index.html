@@ -606,6 +606,30 @@ body:not(.tp-mode-inner) .tp-bg__img{
   .tp-grid .tp-card,
   .tp-grid .tp-card:nth-child(5){min-height:0;max-height:26vh!important;height:100%}
 }
+/* шестой раздел: нижний ряд — тоже три карточки, ряд занят целиком */
+.tp-grid .tp-card:nth-child(4){grid-column:1 / span 2!important}
+.tp-grid .tp-card:nth-child(5){grid-column:3 / span 2!important}
+.tp-grid .tp-card:nth-child(6){grid-column:5 / span 2!important}
+@media (max-aspect-ratio:1/1){
+  .tp-grid .tp-card:nth-child(6){min-height:0;max-height:26vh!important;height:100%}
+}
+/* ================= ПОЯВЛЕНИЕ КАРТОЧЕК МЕНЮ =================
+   Раньше анимация шла ещё на скрытом экране меню, шестая карточка
+   была без задержки и выскакивала первой, а заливка «both» навсегда
+   фиксировала transform и глушила нажатие. Теперь карточки мягко
+   проявляются по очереди каждый раз, когда открывается меню. */
+@keyframes tp-card-in{from{opacity:0;transform:translateY(2.4rem) scale(.985)}to{opacity:1;transform:none}}
+.tp-card{animation:none}
+#tp-menu.is-active .tp-card{animation:tp-card-in .9s cubic-bezier(.22,.9,.28,1) backwards}
+#tp-menu.is-active .tp-card:nth-child(1){animation-delay:.15s}
+#tp-menu.is-active .tp-card:nth-child(2){animation-delay:.22s}
+#tp-menu.is-active .tp-card:nth-child(3){animation-delay:.29s}
+#tp-menu.is-active .tp-card:nth-child(4){animation-delay:.36s}
+#tp-menu.is-active .tp-card:nth-child(5){animation-delay:.43s}
+#tp-menu.is-active .tp-card:nth-child(6){animation-delay:.50s}
+@media (prefers-reduced-motion:reduce){
+  #tp-menu.is-active .tp-card{animation-duration:.01s;animation-delay:0s!important}
+}
 html,body{touch-action:pan-x pan-y}
 </style>
 </head>
@@ -713,7 +737,9 @@ var TP_ICONS = {
   /* I. Стратегия «Узбекистан — 2030» — цель и вектор развития */
   strategy:'<circle cx="10.8" cy="13.2" r="7.6"/><circle cx="10.8" cy="13.2" r="3.9"/><circle cx="10.8" cy="13.2" r="1"/><path d="M10.8 13.2l7.6-7.6"/><path d="M15.2 5.2h3.6v3.6"/>',
   /* IV. Международные транспортные коридоры — глобус и трансконтинентальные маршруты */
-  globe:  '<circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2"/><path d="M12 3.4c2.3 2.5 3.5 5.4 3.5 8.6S14.3 18.1 12 20.6c-2.3-2.5-3.5-5.4-3.5-8.6S9.7 5.9 12 3.4z"/><path d="M5.4 6.7a12.4 12.4 0 0 0 13.2 0"/><path d="M5.4 17.3a12.4 12.4 0 0 1 13.2 0"/>'
+  globe:  '<circle cx="12" cy="12" r="8.6"/><path d="M3.4 12h17.2"/><path d="M12 3.4c2.3 2.5 3.5 5.4 3.5 8.6S14.3 18.1 12 20.6c-2.3-2.5-3.5-5.4-3.5-8.6S9.7 5.9 12 3.4z"/><path d="M5.4 6.7a12.4 12.4 0 0 0 13.2 0"/><path d="M5.4 17.3a12.4 12.4 0 0 1 13.2 0"/>',
+  /* VI. Ravon yo‘llar — арочный мост над дорогой */
+  bridge: '<path d="M2 15.4h20"/><path d="M3.4 15.4a8.6 8.6 0 0 1 17.2 0"/><path d="M7.4 10.2v5.2M12 7.4v8M16.6 10.2v5.2"/><path d="M6 20.6l2-3.6M18 20.6l-2-3.6"/>'
 };
 
 var TP_ARCH_PATH = 'M14 118 L14 52 C14 26 32 6 55 4 C78 6 96 26 96 52 L96 118';
@@ -735,7 +761,8 @@ uz:{
     {icon:'build',    num:'II',  title:'YO‘L INFRATUZILMASI RIVOJLANISHI',       href:'2_yol-infratuzilmasi.html',   ready:1},
     {icon:'unite',    num:'III', title:'HUDUDLARNI BIRLASHTIRGAN YO‘LLAR',       href:'3_hududlarni-birlashtirgan-yollar.html',     ready:1},
     {icon:'globe',    num:'IV',  title:'XALQARO TRANSPORT KORIDORLARI',          href:'4_xalqaro-transport-koridorlari.html',   ready:1},
-    {icon:'future',   num:'V',   title:'KELAJAK LOYIHALARI VA NATIJALAR',        href:'5_kelajak-loyihalari.html',   ready:1}
+    {icon:'future',   num:'V',   title:'KELAJAK LOYIHALARI VA NATIJALAR',        href:'5_kelajak-loyihalari.html',   ready:1},
+    {icon:'bridge',   num:'VI',  title:'YANGI O‘ZBEKISTONNING RAVON YO‘LLARI',  href:'6_ravon-yollar.html',   ready:1}
   ]
 },
 
@@ -751,7 +778,8 @@ ru:{
     {icon:'build',    num:'II',  title:'РАЗВИТИЕ ДОРОЖНОЙ ИНФРАСТРУКТУРЫ',      href:'2_yol-infratuzilmasi.html',   ready:1},
     {icon:'unite',    num:'III', title:'ДОРОГИ, ОБЪЕДИНЯЮЩИЕ РЕГИОНЫ',         href:'3_hududlarni-birlashtirgan-yollar.html',     ready:1},
     {icon:'globe',    num:'IV',  title:'МЕЖДУНАРОДНЫЕ ТРАНСПОРТНЫЕ КОРИДОРЫ',   href:'4_xalqaro-transport-koridorlari.html',   ready:1},
-    {icon:'future',   num:'V',   title:'ПРОЕКТЫ БУДУЩЕГО И РЕЗУЛЬТАТЫ',         href:'5_kelajak-loyihalari.html',   ready:1}
+    {icon:'future',   num:'V',   title:'ПРОЕКТЫ БУДУЩЕГО И РЕЗУЛЬТАТЫ',         href:'5_kelajak-loyihalari.html',   ready:1},
+    {icon:'bridge',   num:'VI',  title:'РОВНЫЕ ДОРОГИ НОВОГО УЗБЕКИСТАНА',  href:'6_ravon-yollar.html',   ready:1}
   ]
 },
 
@@ -767,7 +795,8 @@ en:{
     {icon:'build',    num:'II',  title:'ROAD INFRASTRUCTURE DEVELOPMENT',       href:'2_yol-infratuzilmasi.html',   ready:1},
     {icon:'unite',    num:'III', title:'ROADS UNITING THE REGIONS',             href:'3_hududlarni-birlashtirgan-yollar.html',     ready:1},
     {icon:'globe',    num:'IV',  title:'INTERNATIONAL TRANSPORT CORRIDORS',     href:'4_xalqaro-transport-koridorlari.html',   ready:1},
-    {icon:'future',   num:'V',   title:'FUTURE PROJECTS AND OUTCOMES',          href:'5_kelajak-loyihalari.html',   ready:1}
+    {icon:'future',   num:'V',   title:'FUTURE PROJECTS AND OUTCOMES',          href:'5_kelajak-loyihalari.html',   ready:1},
+    {icon:'bridge',   num:'VI',  title:'SMOOTH ROADS OF NEW UZBEKISTAN',  href:'6_ravon-yollar.html',   ready:1}
   ]
 }
 };
