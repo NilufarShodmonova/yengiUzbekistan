@@ -429,6 +429,27 @@ body.started #deck,#bar{top:var(--hh)}
   #cnt{font-size:clamp(24.7px,2vw,45.6px)}
 }
 </style>
+<style>
+/* ================= ГОРИЗОНТАЛЬНЫЙ ЭКРАН 1920×1080 =================
+   Шапка ниже, управление без подъёма на 50px, счётчик — в одну линию
+   со стрелкой «назад»; подпись к фото выше точек. */
+@media (min-aspect-ratio:1/1){
+  :root{--hh:calc(6.8 * var(--tpu) + 1px);--mh:clamp(48px,5.6vh,68px)}
+  #pg-head{gap:calc(1.6 * var(--tpu));padding:0 calc(2.8 * var(--tpu))}
+  #pg-head img{width:calc(4.2 * var(--tpu))}
+  #pg-head .nm{font-size:calc(1.6 * var(--tpu));letter-spacing:.18em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  .navbtn,#home{bottom:2.4vh}
+  #dots{bottom:calc(2.4vh + var(--mh) + 16px)}
+  #cnt{left:calc(2.2vw + var(--mh) + 18px);bottom:2.4vh;height:var(--mh);
+    display:flex;align-items:center}
+
+  .arx .card,.arx.alt .card{bottom:calc(var(--mh) + 2.4vh + 44px)}
+  .lst{padding:4vh 8vw calc(var(--mh) + 2.4vh + 44px)}
+  .ti{padding-bottom:calc(var(--mh) + 2.4vh + 44px)}
+}
+</style>
 </head>
 
 

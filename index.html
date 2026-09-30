@@ -638,6 +638,48 @@ body:not(.tp-mode-inner) .tp-bg__img{
   #tp-menu.is-active .tp-card{animation-duration:.01s;animation-delay:0s!important}
 }
 html,body{touch-action:pan-x pan-y}
+
+/* ================= ГОРИЗОНТАЛЬНЫЙ ЭКРАН 1920×1080 =================
+   Шапка той же высоты, что и в разделах; шесть карточек — одним рядом;
+   название меню больше не сжимается до нуля (раньше flex-shrink прятал
+   его под шапку), управление без подъёма на 50px. */
+@media (min-aspect-ratio:1/1){
+  .tp-head{padding:0 2.8rem;height:calc(6.8rem + 1px);gap:1.6rem}
+  .tp-head__logo{width:4.2rem}
+  .tp-head .tp-welcome{font-size:1.9rem;letter-spacing:.2em}
+
+  .tp-menu__body{justify-content:center;gap:5vh;overflow:hidden;
+    padding:3vh 3rem 2vh!important}
+  .tp-menu__title{flex:0 0 auto;font-size:2.6rem;letter-spacing:.14em;line-height:1.25;max-width:none}
+  .tp-menu__sub{font-size:1.2rem;margin-top:1.4rem}
+
+  .tp-grid{grid-template-columns:repeat(6,minmax(0,1fr))!important;
+    grid-auto-rows:auto;max-width:none;width:100%;gap:1.6rem}
+  .tp-grid .tp-card,
+  .tp-grid .tp-card:nth-child(n){grid-column:auto!important}
+  .tp-grid .tp-card{height:auto;min-height:38vh;max-height:none;
+    justify-content:flex-start;gap:1.4rem;padding:4.5vh 1.2rem 3.5vh}
+  .tp-arch{width:7.6rem;height:8.6rem}
+  .tp-arch__ico{width:3.6rem;height:3.6rem}
+  .tp-card__num{font-size:1.2rem}
+  .tp-card__title{font-size:1.42rem;letter-spacing:.04em;line-height:1.34;
+    hyphens:manual;overflow-wrap:normal}
+
+  .tp-menu__footer{padding:1rem 2rem 5vh}
+  .tp-pill{height:4.4rem;display:flex;align-items:center;padding:0 1.8rem;font-size:1.2rem}
+  .tp-icobtn{width:4.4rem;height:4.4rem}
+  .tp-icobtn svg{width:2.1rem;height:2.1rem}
+
+  #tp-splash{padding:1.6rem 2.8rem 0}
+  .tp-splash__top{padding:1rem 2.2rem;gap:1.6rem;border-radius:1.2rem}
+  .tp-logo{width:5.6rem}
+  .tp-org{font-size:1.1rem;line-height:1.35}
+  .tp-org b{font-size:1.28em;margin-top:.3rem}
+  .tp-splash__mid{margin:0 auto!important;max-width:none;justify-content:center;gap:1rem}
+  .tp-splash__mid .tp-hero{font-size:min(4.8vw,96px)}
+  .tp-splash__mid .tp-hero__sub{font-size:min(1.6vw,30px)}
+  .tp-splash__bot{padding-bottom:8vh}
+}
 </style>
 </head>
 <body>
