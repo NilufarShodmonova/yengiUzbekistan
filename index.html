@@ -589,8 +589,15 @@ body:not(.tp-mode-inner) .tp-bg__img{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
 }
 .tp-grid{flex:0 0 auto}
-/* карточки меню и кнопки языков внизу — на 150px выше */
-.tp-menu__footer{margin-bottom:150px}
+/* кнопки языков внизу — на той же высоте, что и на заставке:
+   нижний отступ = отступ .tp-splash__bot (4vh + 50px) + нижнее поле #tp-splash.
+   Карточки остаются поднятыми: подъём перенесён в нижнее поле .tp-menu__body */
+.tp-menu__footer{margin-bottom:0;padding-bottom:calc(4vh + 50px + 3rem)}
+.tp-menu__body{padding-bottom:calc(1.5rem + 187px)}
+@media (orientation:landscape){
+  .tp-menu__footer{padding-bottom:calc(4vh + 50px + 2.5rem)}
+  .tp-menu__body{padding-bottom:calc(1.2rem + 55px)}
+}
 
 /* горизонтальная раскладка: два ряда карточек должны уместиться по высоте */
 @media (orientation:landscape){
